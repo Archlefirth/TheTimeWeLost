@@ -1,0 +1,82 @@
+.root {
+    -fx-background-color: #ffffff;
+}
+
+.menu-bar {
+    -fx-background-color: #ffffff;
+}
+
+#game-pane {
+    -fx-background-color: #ffffff;
+}
+
+#text-header{
+    -fx-font-size: 50 px;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-fill: #4DD0E1;
+}
+
+#text-main{
+    -fx-font-size: 30 px;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-fill: #616161;
+}
+
+#text-sub{
+    -fx-font-size: 20 px;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-fill: #616161;
+}
+
+#button-go {
+    -fx-padding: 5 22 5 22;
+    -fx-border-width: 0.5;
+    -fx-background-radius: 0;
+    -fx-background-color: #4DD0E1;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 20pt;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+#button-go:hover {
+    -fx-background-color: #00BCD4;
+}
+
+#button-sub {
+    -fx-padding: 5 22 5 22;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 0;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #4DD0E1;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 20pt;
+    -fx-text-fill: #4DD0E1;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+#button-sub:hover {
+    -fx-background-color: #E0F7FA;
+}
+
+
+#text-field-red {
+    -fx-background-color: white , white, #FFAB91;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+    -fx-font-size: 20pt;
+}
+
+#text-field-blue {
+    -fx-background-color: white , white, #80DEEA;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+    -fx-font-size: 20pt;
+}
+
+.text-field {
+    -fx-background-color: white , white, #F5F5F5;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+    -fx-font-size: 12pt;
+}

@@ -1,0 +1,55 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+version = '1.0'
+defaultTasks 'clean', 'jar'
+mainClassName = 'main.Game'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
+jar {
+    description = 'Creates an executable jar'
+    manifest {
+        attributes( 'Implementation-Title': 'LMC2700',
+                'Implementation-version': version,
+                'Main-Class': 'main.Game',
+                'Class-Path': configurations.compile.files.join(" ")
+        )
+    }
+    println 'Create jar'
+}
+
+task compileTest(dependsOn: compileTestJava) {
+    description = 'Java compile test'
+    println 'Compile test'
+}
+
+compileJava << {
+    println 'CompileJava'
+}
+
+javadoc << {
+    println 'Javadoc'
+}
+
+clean << {
+    println 'Clean'
+}
+
+sourceSets {
+    main {
+        resources.srcDirs = ["src/main/java"]
+    }
+}
