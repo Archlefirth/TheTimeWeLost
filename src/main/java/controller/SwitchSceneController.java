@@ -18,7 +18,6 @@ public class SwitchSceneController implements MainController{
     Game game;
     @FXML private StackPane leftDoor;
     @FXML private StackPane rightDoor;
-    @FXML private Text playerName;
     @FXML private Text text;
     @FXML private Button next;
     @FXML private Button skip;

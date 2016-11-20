@@ -59,6 +59,10 @@
     -fx-background-color: #E0F7FA;
 }
 
+#text-stage {
+    -fx-font-size: 20 px;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-fill: #616161;}
 
 #text-field-red {
     -fx-background-color: white , white, #FFAB91;
