@@ -30,8 +30,9 @@ import java.util.Random;
 public class MainGameController implements MainController{
     private Game game;
     private boolean isPatternVisible = true;
-    private static int level;
-    private static int life;
+    private static int level = 1;
+    private static int life = 3;
+    private static int stage;
     private static int patternLength; //initial pattern length; will increase by level
     private static int givenTime; //time given in seconds
     private Integer timeSeconds; // to update the text label
@@ -40,7 +41,7 @@ public class MainGameController implements MainController{
     private char[] player1keys = {'A', 'S', 'D', 'W'};
     private char[] player2keys = {'K', 'K', 'L', 'I'};
     private PatternChar[] pattern;
-    private String patternToStr; //for debugging purpose
+    private String patternToStr;
     private Random random = new Random();
     private TextField[] inputTextField;
     private static Timeline timeline = new Timeline();
@@ -59,12 +60,13 @@ public class MainGameController implements MainController{
      */
     @FXML
     private void initialize() {
-        level = 1;
-        patternLength = 4;
-        life = 3;
+        if (level < 5) {
+            patternLength = 4;
+        } else {
+            patternLength = level;
+        }
         // default time is 10 seconds, increase slightly each level as the game gets harder
         givenTime = 10;
-        //bindToTime();
         randomizePattern();
         showPattern();
         levelText.setText("Level: " + level);
@@ -194,6 +196,7 @@ public class MainGameController implements MainController{
                     }
                 } else if (e.getCode().equals(KeyCode.ENTER)){ //hitting enter key will match the answers
                     try {
+                        inputTextField[0].requestFocus();
                         matchAnswers();
                     } catch (IOException e1) {
                         e1.printStackTrace();
@@ -236,8 +239,8 @@ public class MainGameController implements MainController{
                 count++; //simply alternate key until level 3
             } else {
                 count = count + random.nextInt(2);  //randomize keys after level 3... to make it harder
+                // note : this will sometimes cause a bug (all pattern char generated for one user)
             }
-            //TODO we could either alternate OR randomize player 1 & 2's keys.
         }
         patternToStr = "";
         for (int i = 0; i <  pattern.length; i++) {
@@ -254,7 +257,6 @@ public class MainGameController implements MainController{
         if (enter.getText().equals("GO!")) {
             enter.setText("ENTER");
             resetPatternGrid();
-            //bindToTime();
             info.setText("Please wait until the pattern disappears...");
         } else {
             matchAnswers();
@@ -275,6 +277,9 @@ public class MainGameController implements MainController{
         }
         System.out.println("User input was : " + input);  // debugging purpose
         if (input.equalsIgnoreCase(patternToStr)) {
+            for (int i = 0; i < inputTextField.length; i++) {
+                inputTextField[i].setDisable(true);
+            }
             patternGrid.setOpacity(100.0);
             patternGrid.setVisible(true);
             level++;
@@ -282,6 +287,11 @@ public class MainGameController implements MainController{
             levelText.setText("Level: " + level);
             info.setText("Correct!\nNext Level : " + level);
             enter.setText("GO!");
+            if (level % 5 == 0) {
+                stage++;
+                SwitchSceneController.setStage(stage);
+                game.switchScene();
+            }
         } else {
             life--;
             lifeText.setText("Life: " + life);
@@ -317,10 +327,23 @@ public class MainGameController implements MainController{
         showPattern();
     }
 
+    /*
+     * sets the players from from another controller
+     */
+
     public static void setPlayers(String player1, String player2) {
         player1str = player1;
         player2str = player2;
     }
+
+    /*
+     * resets the level/life/patternlength from another controller (reset)
+     */
+    public static void setLevel(int lvl, int lf) {
+        level = lvl;
+        life = lf;
+    }
+
     /*
      * helper method to create alert screen.
      *

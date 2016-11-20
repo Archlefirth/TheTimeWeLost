@@ -85,8 +85,6 @@ public class Game extends Application{
         showScreen("view/StartScreen.fxml", "StartScreen");
     }
 
-
-
     /**
      * sets the screen to game over.
      *
@@ -94,6 +92,15 @@ public class Game extends Application{
      */
     public void showGameOverScreen() throws IOException {
         showScreen("view/GameOver.fxml", "GameOver");
+    }
+
+    /**
+     * switches the scene whenever the level is complete
+     *
+     * @throws IOException throws an exception if SwitchScene.fxml is not found.
+     */
+    public void switchScene() throws IOException {
+        showScreen("view/SwitchScene.fxml", "SwitchScene");
     }
 
     /**

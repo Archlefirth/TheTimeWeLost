@@ -86,6 +86,7 @@ public class GameOverController implements MainController {
 
     @FXML
     private void handleStartOverButton() throws IOException {
+        MainGameController.setLevel(1, 3);
         game.showStartScreen();
     }
 

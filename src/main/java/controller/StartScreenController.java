@@ -28,7 +28,8 @@ public class StartScreenController implements MainController{
             Optional<ButtonType> result = alert.showAndWait();
         } else {
             MainGameController.setPlayers(player1.getText(), player2.getText());
-            game.showMainGame();
+            SwitchSceneController.setPlayers(player1.getText(), player2.getText());
+            game.switchScene();
         }
     }
 
