@@ -51,7 +51,6 @@ public class GameOverController implements MainController {
         for (int i = 0; i < levelArr.length; i++) {
             a = a + ", " + levelArr[i];
         }
-        System.out.println(a);
         sort(levelArr);
 
         if (levelArr[3] == level) {

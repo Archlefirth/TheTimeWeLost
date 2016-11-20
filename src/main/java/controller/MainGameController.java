@@ -1,6 +1,6 @@
 package controller;
 
-import javafx.animation.FadeTransition;
+import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -22,6 +23,8 @@ import main.Game;
 import model.PatternChar;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Random;
 
 public class MainGameController implements MainController{
@@ -30,7 +33,8 @@ public class MainGameController implements MainController{
     private static int level;
     private static int life;
     private static int patternLength; //initial pattern length; will increase by level
-    private static int time; //time in seconds
+    private static int givenTime; //time given in seconds
+    private Integer timeSeconds; // to update the text label
     private static String player1str;
     private static String player2str;
     private char[] player1keys = {'A', 'S', 'D', 'W'};
@@ -39,6 +43,7 @@ public class MainGameController implements MainController{
     private String patternToStr; //for debugging purpose
     private Random random = new Random();
     private TextField[] inputTextField;
+    private static Timeline timeline = new Timeline();
     @FXML private Text lifeText;
     @FXML private Text levelText;
     @FXML private Text timeText;
@@ -58,12 +63,13 @@ public class MainGameController implements MainController{
         patternLength = 4;
         life = 3;
         // default time is 10 seconds, increase slightly each level as the game gets harder
-        time = 10;
+        givenTime = 10;
+        //bindToTime();
         randomizePattern();
         showPattern();
         levelText.setText("Level: " + level);
         lifeText.setText("Life: " + life);
-        timeText.setText("Time: " + formatTime(time));
+        timeText.setText("Time: " + givenTime);
         player1.setText("Player 1: " + player1str);
         player1.setStyle("-fx-fill: #EF5350");
         player2. setText("Player 2: " + player2str);
@@ -71,26 +77,33 @@ public class MainGameController implements MainController{
     }
 
     /*
-    * updates the time
+    * runs the timer for the given time when pattern disappears.
+    * When time hits 0 sec, it will automatically match the current user input with the original pattern
     */
     @FXML
-    private void updateTime() {
-        timeText.setText("Time: " + formatTime(time--));
-    }
-
-    /*
-     * formats the time
-     */
-    @FXML
-    private String formatTime(int time) {
-        int minutes = (time % 3600) / 60;
-        int seconds = time % 60;
-        String m = "" + minutes;
-        String s = "" + seconds;
-        if (seconds < 10) {
-            s = "0" + seconds;
-        }
-        return m + ":" + s;
+    private void bindToTime() {
+        timeline = new Timeline();
+        timeSeconds = givenTime;
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.seconds(1),
+                        new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                timeSeconds--;
+                                timeText.setText("Time: " + timeSeconds.toString());
+                                if (timeSeconds.intValue() <= 0) {
+                                    try {
+                                        matchAnswers();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+                )
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     /*
@@ -118,9 +131,8 @@ public class MainGameController implements MainController{
             character.setTextAlignment(TextAlignment.CENTER);
             patternGrid.add(character, i, 0);
         }
-
         FadeTransition transition
-                = new FadeTransition(Duration.seconds(5), patternGrid); // original pattern visible for 3 seconds
+                = new FadeTransition(Duration.seconds(3), patternGrid); // original pattern visible for 3 seconds
         transition.setFromValue(100);
         transition.setToValue(0);
         transition.play();
@@ -130,15 +142,13 @@ public class MainGameController implements MainController{
                 patternGrid.setVisible(false);
                 disablePlayerInput(false);
                 info.setText("Please type in the pattern.");
+                bindToTime();
             }
         });
-
     }
 
     /*
     * shows the player's input pattern on the screen as the user types the key.
-    * @param inputchar input character
-    * @param index index to put the character in playerPatternGrid
     */
     @FXML
     private void showPlayerPattern(ColumnConstraints cc) {
@@ -150,7 +160,7 @@ public class MainGameController implements MainController{
             playerPatternGrid.addColumn(i, field);
             playerPatternGrid.setHgap(20);
             field.setMaxHeight(100);
-            final int j = i; // for focusproperty listener only
+            final int j = i; // for focus property listener only
             field.focusedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -174,18 +184,21 @@ public class MainGameController implements MainController{
         }
         disablePlayerInput(true);
         playerPatternGrid.setPadding(new Insets(0, 20, 0, 20));
-
         for (int i = 0; i < inputTextField.length; i++) {
             final int j = i;
             inputTextField[i].setOnKeyReleased((KeyEvent e) -> {
-                if (e.getCode().isLetterKey() == true){    // only accept letter keys for now
+                if (e.getCode().isLetterKey() == true) {    // only accept letter keys for now
                     inputTextField[j].setText(e.getText());
-                    if ((j + 1) == inputTextField.length) {
-                        enter.requestFocus();     // to only take one char for the input field
-                    } else {
-                        inputTextField[j + 1].requestFocus();
+                    if ((j + 1) < inputTextField.length) {
+                        inputTextField[j + 1].requestFocus(); //to only take one char for the input field
                     }
-                } else {
+                } else if (e.getCode().equals(KeyCode.ENTER)){ //hitting enter key will match the answers
+                    try {
+                        matchAnswers();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }else {
                     inputTextField[j].setText("");
                 }
             });
@@ -194,7 +207,6 @@ public class MainGameController implements MainController{
 
     /*
      * disable the input text fields until the given pattern disappears - to avoid cheating!
-     *
      * @param option true if set disabled
      */
     @FXML
@@ -242,33 +254,52 @@ public class MainGameController implements MainController{
         if (enter.getText().equals("GO!")) {
             enter.setText("ENTER");
             resetPatternGrid();
+            //bindToTime();
             info.setText("Please wait until the pattern disappears...");
         } else {
-            String input = "";
-            for (int i = 0; i < pattern.length; i++) {
-                input = input + inputTextField[i].getText();
-            }
-            System.out.println("User input was : " + input);  // debugging purpose
-            if (input.equalsIgnoreCase(patternToStr)) {
-                patternGrid.setOpacity(100.0);
-                patternGrid.setVisible(true);
-                level++;
-                patternLength++;
-                levelText.setText("Level: " + level);
-                info.setText("Correct!\nNext Level : " + level);
-                enter.setText("GO!");
-            } else {
-                life--;
-                lifeText.setText("Life: " + life);
-                if (life <= 0) {
-                    GameOverController.setLevel((player1str + " & " + player2str), level);
-                    game.showGameOverScreen();
-                } else {
-                    info.setText("Incorrect! Please try again.");
-                    for (int i = 0; i < inputTextField.length; i++) {
-                        inputTextField[i].setText("");
-                    }
+            matchAnswers();
+        }
+    }
+
+    /*
+     * matches the user input with the original pattern and change the display based on it
+     */
+    @FXML
+    private void matchAnswers() throws IOException {
+        timeline.stop();
+        timeSeconds = givenTime;
+        timeText.setText("Time: " + givenTime);
+        String input = "";
+        for (int i = 0; i < pattern.length; i++) {
+            input = input + inputTextField[i].getText();
+        }
+        System.out.println("User input was : " + input);  // debugging purpose
+        if (input.equalsIgnoreCase(patternToStr)) {
+            patternGrid.setOpacity(100.0);
+            patternGrid.setVisible(true);
+            level++;
+            patternLength++;
+            levelText.setText("Level: " + level);
+            info.setText("Correct!\nNext Level : " + level);
+            enter.setText("GO!");
+        } else {
+            life--;
+            lifeText.setText("Life: " + life);
+            if (life <= 0) {
+                GameOverController.setLevel((player1str + " & " + player2str), level);
+                game.showGameOverScreen();
+            } else if (timeSeconds.intValue() <= 0 && life > 0){
+                info.setText("Time Up! Please try again.");
+                for (int i = 0; i < inputTextField.length; i++) {
+                    inputTextField[i].setText("");
                 }
+                bindToTime();
+            } else {
+                info.setText("Incorrect! Please try again.");
+                for (int i = 0; i < inputTextField.length; i++) {
+                    inputTextField[i].setText("");
+                }
+                bindToTime();
             }
         }
     }
