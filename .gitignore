@@ -1,7 +1,6 @@
 # Created by https://www.gitignore.io/api/gradle,intellij,macos,vim,windows
 
 ### Test Tools ###
-*.png
 
 ### Java ###
 *.class
