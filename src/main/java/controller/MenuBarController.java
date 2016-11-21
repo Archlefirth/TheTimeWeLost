@@ -38,8 +38,19 @@ public class MenuBarController implements MainController {
     @FXML
     private void handleHelpMenuItem() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Help");
-        alert.setHeaderText("Instruction for the game.");
+        alert.setTitle("How to Play");
+        alert.setHeaderText(
+                "Work together to enter the correct pattern\n" +
+                "Press the corresponding keys on the keyboard to input a pattern\n" +
+                "Enter the right pattern before the time runs out and advance a level\n" +
+                "Complete levels and advance through the ages to get home\n\n" +
+
+                "Enter a pattern incorrectly and lose a life\n" +
+                "Lose all lives and the game is over\n" +
+                "Advance an age and get bonus time and another life\n\n" +
+
+                "How far can you go?"
+        );
         Optional<ButtonType> result = alert.showAndWait();
     }
 

@@ -21,7 +21,6 @@ import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import main.Game;
 import model.PatternChar;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,7 +33,7 @@ public class MainGameController implements MainController{
     private static int life = 3;
     private static int stage;
     private static int patternLength; //initial pattern length; will increase by level
-    private static int givenTime; //time given in seconds
+    private static int givenTime; // the starting time for each level given in seconds
     private Integer timeSeconds; // to update the text label
     private static String player1str;
     private static String player2str;
@@ -61,31 +60,32 @@ public class MainGameController implements MainController{
     @FXML
     private void initialize() {
         if (level < 5) {
-            patternLength = 4;
+            patternLength = 4; //set to 1 for quick debugging but be sure to change it back
         } else {
             patternLength = level;
         }
-        // default time is 10 seconds, increase slightly each level as the game gets harder
-        givenTime = 10;
+        // default time is 10 seconds, increase by 10 each level as the game gets harder
+        givenTime = 10 + ((level / 5) * 10);
         randomizePattern();
         showPattern();
         levelText.setText("Level: " + level);
         lifeText.setText("Life: " + life);
         timeText.setText("Time: " + givenTime);
         player1.setText("Player 1: " + player1str);
-        player1.setStyle("-fx-fill: #EF5350");
+        player1.setStyle("-fx-fill: #0091EA");
         player2. setText("Player 2: " + player2str);
-        player2.setStyle("-fx-fill: #0091EA");
+        player2.setStyle("-fx-fill: #EF5350");
     }
 
     /*
     * runs the timer for the given time when pattern disappears.
     * When time hits 0 sec, it will automatically match the current user input with the original pattern
+    * @param time the time value to be set
     */
     @FXML
-    private void bindToTime() {
+    private void bindToTime(int time) {
         timeline = new Timeline();
-        timeSeconds = givenTime;
+        timeSeconds = time;
         timeline.getKeyFrames().add(
                 new KeyFrame(Duration.seconds(1),
                         new EventHandler<ActionEvent>() {
@@ -125,9 +125,9 @@ public class MainGameController implements MainController{
             Text character = new Text();
             character.setText(pattern[i].getCharacter() + "");
             if (pattern[i].getPlayer().equals("1")) {
-                character.setStyle("-fx-fill: #EF5350; -fx-font-size: 40px;");
-            } else {
                 character.setStyle("-fx-fill: #0091EA; -fx-font-size: 40px;");
+            } else {
+                character.setStyle("-fx-fill: #EF5350; -fx-font-size: 40px;");
             }
             character.setWrappingWidth(1000.0 / pattern.length);
             character.setTextAlignment(TextAlignment.CENTER);
@@ -144,7 +144,7 @@ public class MainGameController implements MainController{
                 patternGrid.setVisible(false);
                 disablePlayerInput(false);
                 info.setText("Please type in the pattern.");
-                bindToTime();
+                bindToTime(givenTime);
             }
         });
     }
@@ -168,9 +168,9 @@ public class MainGameController implements MainController{
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                     if (newValue) {
                         if (pattern[j].getPlayer().equals("1")) {
-                            field.setStyle("-fx-border-width: 4; -fx-border-color:#FF7043");
-                        } else {
                             field.setStyle("-fx-border-width: 4; -fx-border-color:#00BCD4");
+                        } else {
+                            field.setStyle("-fx-border-width: 4; -fx-border-color:#F7043");
                         }
                     } else {
                         field.setStyle("-fx-border-size: 0");
@@ -178,9 +178,9 @@ public class MainGameController implements MainController{
                 }
             });
             if (pattern[i].getPlayer() == "1") {
-                field.setId("text-field-red");
-            } else {
                 field.setId("text-field-blue");
+            } else {
+                field.setId("text-field-red");
             }
             inputTextField[i] = field;
         }
@@ -189,7 +189,7 @@ public class MainGameController implements MainController{
         for (int i = 0; i < inputTextField.length; i++) {
             final int j = i;
             inputTextField[i].setOnKeyReleased((KeyEvent e) -> {
-                if (e.getCode().isLetterKey() == true) {    // only accept letter keys for now
+                if (e.getCode().isLetterKey()) {    // only accept letter keys for now
                     inputTextField[j].setText(e.getText());
                     if ((j + 1) < inputTextField.length) {
                         inputTextField[j + 1].requestFocus(); //to only take one char for the input field
@@ -235,9 +235,10 @@ public class MainGameController implements MainController{
                 pattern[i] = new PatternChar(player2keys[random.nextInt(4)], "2");
             }
             //count++;
-            if (level < 3) {
-                count++; //simply alternate key until level 3
+            if (level < 5) {
+                count++; //simply alternate key until level 5
             } else {
+                //TODO: Optimize randomizer to fix bug (below)
                 count = count + random.nextInt(2);  //randomize keys after level 3... to make it harder
                 // note : this will sometimes cause a bug (all pattern char generated for one user)
             }
@@ -269,8 +270,7 @@ public class MainGameController implements MainController{
     @FXML
     private void matchAnswers() throws IOException {
         timeline.stop();
-        timeSeconds = givenTime;
-        timeText.setText("Time: " + givenTime);
+        timeText.setText("Time: " + timeSeconds);
         String input = "";
         for (int i = 0; i < pattern.length; i++) {
             input = input + inputTextField[i].getText();
@@ -283,15 +283,19 @@ public class MainGameController implements MainController{
             patternGrid.setOpacity(100.0);
             patternGrid.setVisible(true);
             level++;
-            patternLength++;
+            if (level >= 5 ) { // the pattern will always be the starting value for the first stages
+                patternLength++;
+            }
             levelText.setText("Level: " + level);
             info.setText("Correct!\nNext Level : " + level);
             enter.setText("GO!");
             if (level % 5 == 0) {
                 stage++;
+                life++; // bonus life every new stage
                 SwitchSceneController.setStage(stage);
                 game.switchScene();
             }
+            timeText.setText("Time: " + givenTime);
         } else {
             life--;
             lifeText.setText("Life: " + life);
@@ -299,17 +303,18 @@ public class MainGameController implements MainController{
                 GameOverController.setLevel((player1str + " & " + player2str), level);
                 game.showGameOverScreen();
             } else if (timeSeconds.intValue() <= 0 && life > 0){
-                info.setText("Time Up! Please try again.");
+                life--;
+                info.setText("Time's Up! Try Again!");
                 for (int i = 0; i < inputTextField.length; i++) {
                     inputTextField[i].setText("");
                 }
-                bindToTime();
+                bindToTime(givenTime);
             } else {
                 info.setText("Incorrect! Please try again.");
                 for (int i = 0; i < inputTextField.length; i++) {
                     inputTextField[i].setText("");
                 }
-                bindToTime();
+                bindToTime(timeSeconds);
             }
         }
     }
@@ -337,7 +342,7 @@ public class MainGameController implements MainController{
     }
 
     /*
-     * resets the level/life/patternlength from another controller (reset)
+     * resets the level/life from another controller (reset)
      */
     public static void setLevel(int lvl, int lf) {
         level = lvl;

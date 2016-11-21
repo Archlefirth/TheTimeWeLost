@@ -16,29 +16,36 @@ public class StartScreenController implements MainController{
     @FXML private TextField player2;
     @FXML
     private void handleStartButton() throws IOException {
+        // if the users doesn't enter names set to default
+        // change these names to the names of the actual time traveller characters
         if (player1.getText().length() == 0){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Player 1");
-            alert.setHeaderText("Please put player 1's name.");
-            Optional<ButtonType> result = alert.showAndWait();
-        } else if (player2.getText().length() == 0){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Player 2");
-            alert.setHeaderText("Please put player 2's name.");
-            Optional<ButtonType> result = alert.showAndWait();
-        } else {
-            MainGameController.setPlayers(player1.getText(), player2.getText());
-            SwitchSceneController.setPlayers(player1.getText(), player2.getText());
-            game.switchScene();
+            player1.setText("Default Dan");
         }
+        if (player2.getText().length() == 0){
+            player2.setText("Default Molly");
+        }
+        MainGameController.setPlayers(player1.getText(), player2.getText());
+        SwitchSceneController.setPlayers(player1.getText(), player2.getText());
+        game.switchScene();
     }
 
     //TODO make a instruction page
     @FXML
     private void handleInstructionButton() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Implementation needed");
-        alert.setHeaderText("This feature has not been implemented yet.");
+        alert.setTitle("HOW TO PLAY");
+        alert.setHeaderText(
+                "Work together to enter the correct pattern\n" +
+                "Press the corresponding keys on the keyboard to input a pattern\n" +
+                "Enter the right pattern before the time runs out and advance a level\n" +
+                "Complete levels and advance through the ages to get home\n\n" +
+
+                "Enter a pattern incorrectly and lose a life\n" +
+                "Lose all lives and the game is over\n" +
+                "Advance an age and get bonus time and another life\n\n" +
+
+                "How far can you go?"
+        );
         Optional<ButtonType> result = alert.showAndWait();
     }
 

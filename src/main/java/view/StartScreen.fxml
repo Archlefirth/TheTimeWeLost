@@ -39,7 +39,7 @@
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button id="button-sub" mnemonicParsing="false" onAction="#handleInstructionButton" prefHeight="70.0" prefWidth="300.0" text="INSTRUCTION" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+            <Button id="button-sub" mnemonicParsing="false" onAction="#handleInstructionButton" prefHeight="70.0" prefWidth="300.0" text="HOW TO PLAY" GridPane.halignment="CENTER" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>

@@ -32,10 +32,10 @@ public class Dialogue {
         //intro narrative
         lineArr[0].add("This is an introduction page (narrative)");
         lineArr[0].add(player1 + ": Yo let me touch this time machine!");
-        lineArr[0].add(player2 + ": Ah what's going on?");
+        lineArr[0].add(player2 + ": Paige...no more Papa John's ads");
         lineArr[0].add(player1 + ": AJ isn't funny");
-        lineArr[0].add(player2 + ": I know haha");
-        lineArr[0].add(player1 + ": hahaha");
+        lineArr[0].add(player2 + ": Actually AJ is the best and could be a professional comedian if she wanted");
+        lineArr[0].add(player1 + ": I'm sorry for what I said. Long live AJ!");
 
         //Cavemen
         lineArr[1].add("Ch.1  Caveman Age");
