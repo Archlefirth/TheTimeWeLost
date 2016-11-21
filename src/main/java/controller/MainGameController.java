@@ -283,7 +283,7 @@ public class MainGameController implements MainController{
             patternGrid.setOpacity(100.0);
             patternGrid.setVisible(true);
             level++;
-            if (level >= 5 ) { // the pattern will always be the starting value for the first stages
+            if (level >= 5 ) { // the pattern will always be the starting value for the first 5 stages
                 patternLength++;
             }
             levelText.setText("Level: " + level);
