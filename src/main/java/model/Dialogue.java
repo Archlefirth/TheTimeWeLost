@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Dialogue {
     private static ArrayList<String>[] lineArr = new ArrayList[8];
-    //set array of lines to 5 levels for now
+    //set array of lines to 7 levels for now
     //We can use FileIO since this could get messy.
     private String player1;
     private String player2;

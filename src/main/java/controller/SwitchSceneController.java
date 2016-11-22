@@ -37,7 +37,6 @@ public class SwitchSceneController implements MainController{
         dialogue = new Dialogue(player1, player2);
         lineList = dialogue.getDialogue();
         text.setText(readLine(stage, lineNum));
-        lineNum++;
     }
 
     /*

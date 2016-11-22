@@ -24,7 +24,7 @@
          <children>
             <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="BASELINE">
                <image>
-                  <Image url="@../img/sampleScreen.png" />
+                  <Image url="@../img/sampleScreen.gif" />
                </image>
             </ImageView>
             <ButtonBar buttonMinWidth="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1000.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">

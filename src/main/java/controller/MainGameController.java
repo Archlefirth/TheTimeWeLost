@@ -70,7 +70,7 @@ public class MainGameController implements MainController{
         showPattern();
         levelText.setText("Level: " + level);
         lifeText.setText("Life: " + life);
-        timeText.setText("Time: " + givenTime);
+        timeText.setText("" + givenTime);
         player1.setText("Player 1: " + player1str);
         player1.setStyle("-fx-fill: #0091EA");
         player2. setText("Player 2: " + player2str);
@@ -92,7 +92,10 @@ public class MainGameController implements MainController{
                             @Override
                             public void handle(ActionEvent event) {
                                 timeSeconds--;
-                                timeText.setText("Time: " + timeSeconds.toString());
+                                timeText.setText("" + timeSeconds.toString());
+                                if (timeSeconds.intValue() <= 3) {
+                                    timeText.setStyle("-fx-fill:#FF7043");
+                                }
                                 if (timeSeconds.intValue() <= 0) {
                                     try {
                                         matchAnswers();
@@ -170,7 +173,7 @@ public class MainGameController implements MainController{
                         if (pattern[j].getPlayer().equals("1")) {
                             field.setStyle("-fx-border-width: 4; -fx-border-color:#00BCD4");
                         } else {
-                            field.setStyle("-fx-border-width: 4; -fx-border-color:#F7043");
+                            field.setStyle("-fx-border-width: 4; -fx-border-color:#FF7043");
                         }
                     } else {
                         field.setStyle("-fx-border-size: 0");
@@ -270,7 +273,7 @@ public class MainGameController implements MainController{
     @FXML
     private void matchAnswers() throws IOException {
         timeline.stop();
-        timeText.setText("Time: " + timeSeconds);
+        timeText.setText("" + timeSeconds);
         String input = "";
         for (int i = 0; i < pattern.length; i++) {
             input = input + inputTextField[i].getText();
@@ -295,7 +298,7 @@ public class MainGameController implements MainController{
                 SwitchSceneController.setStage(stage);
                 game.switchScene();
             }
-            timeText.setText("Time: " + givenTime);
+            timeText.setText("" + givenTime);
         } else {
             life--;
             lifeText.setText("Life: " + life);
@@ -303,7 +306,6 @@ public class MainGameController implements MainController{
                 GameOverController.setLevel((player1str + " & " + player2str), level);
                 game.showGameOverScreen();
             } else if (timeSeconds.intValue() <= 0 && life > 0){
-                life--;
                 info.setText("Time's Up! Try Again!");
                 for (int i = 0; i < inputTextField.length; i++) {
                     inputTextField[i].setText("");

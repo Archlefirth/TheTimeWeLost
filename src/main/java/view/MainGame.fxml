@@ -9,9 +9,10 @@
 
 <StackPane id="game-pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainGameController">
     <children>
-        <Text id="text-sub" fx:id="levelText" strokeType="OUTSIDE" strokeWidth="0.0" translateX="30.0" translateY="60.0" StackPane.alignment="TOP_LEFT" />
+      <Text id="text-sub" strokeType="OUTSIDE" strokeWidth="0.0" text="remaining seconds" translateY="30.0" StackPane.alignment="TOP_CENTER" />
+        <Text id="text-time" fx:id="timeText" strokeType="OUTSIDE" strokeWidth="0.0" translateY="55.0" StackPane.alignment="TOP_CENTER" />
         <Text id="text-sub" fx:id="lifeText" strokeType="OUTSIDE" strokeWidth="0.0" translateX="30.0" translateY="30.0" StackPane.alignment="TOP_LEFT" />
-        <Text id="text-sub" fx:id="timeText" strokeType="OUTSIDE" strokeWidth="0.0" translateX="30.0" translateY="90.0" StackPane.alignment="TOP_LEFT" />
+        <Text id="text-sub" fx:id="levelText" strokeType="OUTSIDE" strokeWidth="0.0" translateX="30.0" translateY="60.0" StackPane.alignment="TOP_LEFT" />
         <Text id="text-sub" fx:id="player1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" translateX="-30.0" translateY="30.0" wrappingWidth="300.0" StackPane.alignment="TOP_RIGHT" />
         <Text id="text-sub" fx:id="player2" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" translateX="-30.0" translateY="60.0" wrappingWidth="300.0" StackPane.alignment="TOP_RIGHT" />
         <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0">

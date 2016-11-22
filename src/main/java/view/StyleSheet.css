@@ -28,6 +28,12 @@
     -fx-fill: #616161;
 }
 
+#text-time{
+    -fx-font-size: 40 px;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-fill: #4DD0E1;
+}
+
 #button-go {
     -fx-padding: 5 22 5 22;
     -fx-border-width: 0.5;
