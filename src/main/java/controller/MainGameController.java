@@ -9,13 +9,14 @@ import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
@@ -61,10 +62,12 @@ public class MainGameController implements MainController{
     private void initialize() {
         if (level < 5) {
             patternLength = 4; //set to 1 for quick debugging but be sure to change it back
+        } else if (level < 15) {
+            patternLength = level; // to prevent long and almost impossible pattern matches
         } else {
-            patternLength = level;
+            patternLength = 15;
         }
-        // default time is 10 seconds, increase by 10 each level as the game gets harder
+        // default time is 10 seconds, increase by 10 bonus seconds each level as the game gets harder
         givenTime = 10 + ((level / 5) * 10);
         randomizePattern();
         showPattern();
