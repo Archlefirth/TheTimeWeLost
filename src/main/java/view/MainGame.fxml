@@ -51,10 +51,6 @@
         </GridPane>
         <Button id="button-go" fx:id="enter" mnemonicParsing="false" onAction="#handleEnterButton" prefHeight="70.0" prefWidth="300.0" text="ENTER" translateY="-50.0" StackPane.alignment="BOTTOM_CENTER" />
           <Text id="text-main-white" fx:id="info" strokeType="OUTSIDE" strokeWidth="0.0" text="Please wait until the pattern disappears..." textAlignment="CENTER" translateY="-150.0" StackPane.alignment="BOTTOM_CENTER" />
-      <ImageView fx:id="img" fitHeight="142.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true" translateY="-200.0" StackPane.alignment="BOTTOM_CENTER">
-         <image>
-            <Image url="@../img/timeline/6.png" />
-         </image>
-      </ImageView>
+      <ImageView fx:id="img" fitHeight="142.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true" translateY="-200.0" StackPane.alignment="BOTTOM_CENTER" />
     </children>
 </StackPane>
