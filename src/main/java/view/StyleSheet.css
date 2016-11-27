@@ -22,6 +22,12 @@
     -fx-fill: #616161;
 }
 
+#text-main-white {
+    -fx-font-size: 30 px;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-fill: #ffffff;
+}
+
 #text-sub{
     -fx-font-size: 20 px;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
@@ -38,7 +44,7 @@
     -fx-padding: 5 22 5 22;
     -fx-border-width: 0.5;
     -fx-background-radius: 0;
-    -fx-background-color: #4DD0E1;
+    -fx-background-color: #84C253;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 20pt;
     -fx-text-fill: #FFFFFF;
@@ -46,7 +52,7 @@
 }
 
 #button-go:hover {
-    -fx-background-color: #00BCD4;
+    -fx-background-color: #2E7D32;
 }
 
 #button-sub {
@@ -54,15 +60,15 @@
     -fx-border-width: 1.5;
     -fx-background-radius: 0;
     -fx-background-color: #FFFFFF;
-    -fx-border-color: #4DD0E1;
+    -fx-border-color: #84C253;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 20pt;
-    -fx-text-fill: #4DD0E1;
+    -fx-text-fill: #84C253;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 #button-sub:hover {
-    -fx-background-color: #E0F7FA;
+    -fx-background-color: #F1F8E9;
 }
 
 #text-stage {

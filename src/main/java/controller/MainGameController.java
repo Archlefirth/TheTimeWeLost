@@ -1,5 +1,6 @@
 package controller;
 
+import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
 import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -10,6 +11,8 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
@@ -45,6 +48,7 @@ public class MainGameController implements MainController{
     private Random random = new Random();
     private TextField[] inputTextField;
     private static Timeline timeline = new Timeline();
+    private Image stageImg;
     @FXML private Text lifeText;
     @FXML private Text levelText;
     @FXML private Text timeText;
@@ -54,19 +58,15 @@ public class MainGameController implements MainController{
     @FXML private GridPane patternGrid;
     @FXML private GridPane playerPatternGrid;
     @FXML private Text info;
+    @FXML private ImageView img;
 
     /**
      * Initializes the Main Game screen.
      */
     @FXML
     private void initialize() {
-        if (level < 5) {
-            patternLength = 4; //set to 1 for quick debugging but be sure to change it back
-        } else if (level < 15) {
-            patternLength = level; // to prevent long and almost impossible pattern matches
-        } else {
-            patternLength = 15;
-        }
+        stageImg = new Image("/img/timeline/" + (stage + 1) + ".png");
+        img.setImage(stageImg);
         // default time is 10 seconds, increase by 10 bonus seconds each level as the game gets harder
         givenTime = 10 + ((level / 5) * 10);
         randomizePattern();
@@ -232,6 +232,19 @@ public class MainGameController implements MainController{
      * the pattern will be generated with characters alternating player1's keys and player2's keys.
      */
     private void randomizePattern() {
+        if (level < 5) { //stage 1
+            patternLength = 4;
+        } else if (level < 10) { //stage 2
+            patternLength = 6;
+        } else if (level < 15) { //stage 3
+            patternLength   = 8;
+        } else if (level < 20) { //stage 4
+            patternLength = 10;
+        } else if (level < 25) { //stage 5;
+            patternLength = 15;
+        } else {
+            patternLength = 15;
+        }
         pattern = new PatternChar[patternLength];
         int count = 1;
         for (int i = 0; i <  patternLength; i++) {
@@ -276,7 +289,6 @@ public class MainGameController implements MainController{
     @FXML
     private void matchAnswers() throws IOException {
         timeline.stop();
-        timeText.setText("" + timeSeconds);
         String input = "";
         for (int i = 0; i < pattern.length; i++) {
             input = input + inputTextField[i].getText();
@@ -295,6 +307,8 @@ public class MainGameController implements MainController{
             levelText.setText("Level: " + level);
             info.setText("Correct!\nNext Level : " + level);
             enter.setText("GO!");
+            timeText.setStyle("-fx-fill:#4DD0E1");
+            timeText.setText("" + timeSeconds);
             if (level % 5 == 0) {
                 stage++;
                 life++; // bonus life every new stage
@@ -308,11 +322,13 @@ public class MainGameController implements MainController{
             if (life <= 0) {
                 GameOverController.setLevel((player1str + " & " + player2str), level);
                 game.showGameOverScreen();
+                timeline.stop();
             } else if (timeSeconds.intValue() <= 0 && life > 0){
                 info.setText("Time's Up! Try Again!");
                 for (int i = 0; i < inputTextField.length; i++) {
                     inputTextField[i].setText("");
                 }
+                timeText.setStyle("-fx-fill:#4DD0E1");
                 bindToTime(givenTime);
             } else {
                 info.setText("Incorrect! Please try again.");
