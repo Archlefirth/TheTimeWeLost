@@ -65,7 +65,7 @@ public class MainGameController implements MainController{
      */
     @FXML
     private void initialize() {
-        stageImg = new Image("/img/timeline/" + (stage + 1) + ".png");
+        stageImg = new Image("/img/timeline/" + stage + ".png");
         img.setImage(stageImg);
         // default time is 10 seconds, increase by 10 bonus seconds each level as the game gets harder
         givenTime = 10 + ((level / 5) * 10);

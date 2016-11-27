@@ -71,10 +71,25 @@
     -fx-background-color: #F1F8E9;
 }
 
+#button-nav {
+    -fx-padding: 5 22 5 22;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 0;
+    -fx-background-color: #000000;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #ffffff;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+#button-nav:hover {
+    -fx-background-color: #F1F8E9;
+}
+
 #text-stage {
     -fx-font-size: 20 px;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-fill: #616161;}
+    -fx-fill: #ffffff;}
 
 #text-field-red {
     -fx-background-color: white , white, #FFAB91;

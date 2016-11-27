@@ -4,6 +4,8 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -21,6 +23,8 @@ public class SwitchSceneController implements MainController{
     @FXML private Text text;
     @FXML private Button next;
     @FXML private Button skip;
+    @FXML private ImageView img;
+    private Image stageImg;
     private static String player1;
     private static String player2;
     private Dialogue dialogue;
@@ -37,6 +41,8 @@ public class SwitchSceneController implements MainController{
         dialogue = new Dialogue(player1, player2);
         lineList = dialogue.getDialogue();
         text.setText(readLine(stage, lineNum));
+        stageImg = new Image("/img/" + 0 + ".gif");
+        img.setImage(stageImg);
     }
 
     /*
