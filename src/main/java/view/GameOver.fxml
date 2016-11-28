@@ -24,7 +24,7 @@
         </rowConstraints>
          <children>
             <Button id="button-go" mnemonicParsing="false" onAction="#handleStartOverButton" prefHeight="77.0" prefWidth="369.0" text="START OVER" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-            <Text id="text-header" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GAME OVER" wrappingWidth="274.3896484375" GridPane.halignment="CENTER" GridPane.rowSpan="2">
+            <Text id="text-header" fx:id="header" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GAME OVER" textAlignment="CENTER" wrappingWidth="274.3896484375" GridPane.halignment="CENTER" GridPane.rowSpan="2">
                <font>
                   <Font size="96.0" />
                </font>
