@@ -41,8 +41,10 @@ public class SwitchSceneController implements MainController{
         dialogue = new Dialogue(player1, player2);
         lineList = dialogue.getDialogue();
         text.setText(readLine(stage, lineNum));
-        stageImg = new Image("/img/" + 0 + ".gif");
-        img.setImage(stageImg);
+        if (stage < 6) {
+            stageImg = new Image("/img/" + stage + ".gif");
+            img.setImage(stageImg);
+        }
     }
 
     /*

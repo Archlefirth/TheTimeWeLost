@@ -17,17 +17,13 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import main.Game;
 import model.PatternChar;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.Optional;
 import java.util.Random;
 
 public class MainGameController implements MainController{
@@ -131,9 +127,9 @@ public class MainGameController implements MainController{
             Text character = new Text();
             character.setText(pattern[i].getCharacter() + "");
             if (pattern[i].getPlayer().equals("1")) {
-                character.setStyle("-fx-fill: #0091EA; -fx-font-size: 40px;");
+                character.setStyle("-fx-fill: #0091EA; -fx-font-size: 35px;");
             } else {
-                character.setStyle("-fx-fill: #EF5350; -fx-font-size: 40px;");
+                character.setStyle("-fx-fill: #EF5350; -fx-font-size: 35px;");
             }
             character.setWrappingWidth(1000.0 / pattern.length);
             character.setTextAlignment(TextAlignment.CENTER);
@@ -166,7 +162,7 @@ public class MainGameController implements MainController{
             field.setAlignment(Pos.CENTER);
             playerPatternGrid.getColumnConstraints().add(i, cc);
             playerPatternGrid.addColumn(i, field);
-            playerPatternGrid.setHgap(20);
+            field.setMaxWidth(70);
             field.setMaxHeight(100);
             final int j = i; // for focus property listener only
             field.focusedProperty().addListener(new ChangeListener<Boolean>() {
@@ -239,21 +235,34 @@ public class MainGameController implements MainController{
         } else if (level < 15) { //stage 3
             patternLength   = 8;
         } else if (level < 20) { //stage 4
-            patternLength = 10;
+            patternLength = 11;
         } else if (level < 25) { //stage 5;
-            patternLength = 15;
+            patternLength = 11;
+            player1keys = new char[] {'Q', 'W', 'E', 'R', 'A', 'S', 'D', 'F'}; //8
+            player2keys = new char[] {'U', 'I', 'O', 'P', 'H', 'J', 'K', 'L'}; //8
         } else {
-            patternLength = 15;
+            patternLength = 11;
+            player1keys = new char[] {'Q', 'W', 'E', 'R', 'A', 'S', 'D', 'F', 'Z', 'X', 'C', 'V'}; //12
+            player2keys = new char[] {'U', 'I', 'O', 'P', 'H', 'J', 'K', 'L', 'V', 'B', 'N', 'M'}; //12
+
         }
         pattern = new PatternChar[patternLength];
         int count = 1;
         for (int i = 0; i <  patternLength; i++) {
-            if (count % 2 == 1) {
+            if (count % 2 == 1 && level < 20) {
                 pattern[i] = new PatternChar(player1keys[random.nextInt(4)], "1");
-            } else {
+            } else if (count % 2 == 0 && level < 20){
                 pattern[i] = new PatternChar(player2keys[random.nextInt(4)], "2");
+            } else if (count % 2 == 1 && level >= 20 && level < 25) {
+                pattern[i] = new PatternChar(player1keys[random.nextInt(8)], "1");
+            } else if (count % 2 == 0 && level >= 20 && level < 25) {
+                pattern[i] = new PatternChar(player2keys[random.nextInt(8)], "2");
+            } else if (count % 2 == 1 && level >= 25) {
+                pattern[i] = new PatternChar(player1keys[random.nextInt(12)], "1");
+            } else if (count % 2 == 0 && level >= 25) {
+                pattern[i] = new PatternChar(player2keys[random.nextInt(12)], "2");
             }
-            //count++;
+
             if (level < 5) {
                 count++; //simply alternate key until level 5
             } else {
@@ -301,25 +310,37 @@ public class MainGameController implements MainController{
             patternGrid.setOpacity(100.0);
             patternGrid.setVisible(true);
             level++;
-            if (level >= 5 ) { // the pattern will always be the starting value for the first 5 stages
-                patternLength++;
-            }
-            levelText.setText("Level: " + level);
-            info.setText("Correct!\nNext Level : " + level);
-            enter.setText("GO!");
-            timeText.setStyle("-fx-fill:#4DD0E1");
-            timeText.setText("" + timeSeconds);
-            if (level % 5 == 0) {
-                stage++;
-                life++; // bonus life every new stage
-                SwitchSceneController.setStage(stage);
-                game.switchScene();
+            if (level < 30) {
+                levelText.setText("Level: " + level);
+                info.setText("Correct! Next Level : " + level);
+                enter.setText("GO!");
+                timeText.setStyle("-fx-fill:#4DD0E1");
+                timeText.setText("" + timeSeconds);
+                if (level % 5 == 0) {
+                    stage++;
+                    life++; // bonus life every new stage
+                    Alert alert = showAlert(
+                        Alert.AlertType.INFORMATION,
+                        "+1 Bonus Life!",
+                        "Good job! You received a bonus life.");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        SwitchSceneController.setStage(stage);
+                        game.switchScene();
+                    }
             }
             timeText.setText("" + givenTime);
-        } else {
+        } else if (level >= 30){ //user wins
+            //TODO ending of the game
+            GameOverController.setHeader("YOU WON!");
+            GameOverController.setLevel((player1str + " & " + player2str), level);
+            game.showGameOverScreen();
+        }
+    }else {
             life--;
             lifeText.setText("Life: " + life);
             if (life <= 0) {
+                GameOverController.setHeader("GAME OVER");
                 GameOverController.setLevel((player1str + " & " + player2str), level);
                 game.showGameOverScreen();
                 timeline.stop();
