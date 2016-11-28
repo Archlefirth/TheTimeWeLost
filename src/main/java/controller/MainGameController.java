@@ -17,17 +17,12 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 import main.Game;
 import model.PatternChar;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Optional;
 import java.util.Random;
 
@@ -167,7 +162,6 @@ public class MainGameController implements MainController{
             field.setAlignment(Pos.CENTER);
             playerPatternGrid.getColumnConstraints().add(i, cc);
             playerPatternGrid.addColumn(i, field);
-            playerPatternGrid.setHgap(20);
             field.setMaxWidth(70);
             field.setMaxHeight(100);
             final int j = i; // for focus property listener only
