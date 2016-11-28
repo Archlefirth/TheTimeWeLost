@@ -16,6 +16,8 @@ public class GameOverController implements MainController {
     @FXML private Text firstLevel;
     @FXML private Text secondLevel;
     @FXML private Text thirdLevel;
+    @FXML private Text header;
+    private static String header_text = "Game Over";
     private static int level1, level2, level3;
     private static int level;
     private static String players1, players2, players3;
@@ -26,6 +28,7 @@ public class GameOverController implements MainController {
      */
     @FXML
     private void initialize(){
+        header.setText(header_text);
         setChart();
     }
 
@@ -41,6 +44,10 @@ public class GameOverController implements MainController {
         level = inLevel;
     }
 
+    @FXML
+    public static void setHeader(String h) {
+        header_text = h;
+    }
     /*
      * updates the chart
      */
