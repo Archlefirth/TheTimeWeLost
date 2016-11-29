@@ -27,13 +27,13 @@ public class MenuBarController implements MainController {
         game.showStartScreen();
     }
 
-    @FXML
-    private void handleViewLevelMenuItem() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("View Level");
-        alert.setHeaderText("View map/level based on the narrative");
-        Optional<ButtonType> result = alert.showAndWait();
-    }
+//    @FXML
+//    private void handleViewLevelMenuItem() {
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        alert.setTitle("View Level");
+//        alert.setHeaderText("View map/level based on the narrative");
+//        Optional<ButtonType> result = alert.showAndWait();
+//    }
 
     @FXML
     private void handleHelpMenuItem() {
@@ -58,13 +58,13 @@ public class MenuBarController implements MainController {
     private void handleAboutMenuItem() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("About");
-        alert.setHeaderText("This is a Project 5 for LMC2700." +
+        alert.setHeaderText("This is a project made for LMC2700 at Georgia Tech." +
                 "\n\nCreated by:" +
                 "\nAhJin Noh" +
                 "\nVikram Kumar" +
                 "\nOlivia Murk Kaya" +
                 "\nPaige Greenfield" +
-                "\n\n Instructor: Yanni Loukissas");
+                "\n\nInstructors: Yanni Loukissas");
         Optional<ButtonType> result = alert.showAndWait();
     }
 

@@ -11,12 +11,11 @@
          <Menu mnemonicParsing="false" text="Game">
            <items>
                <MenuItem mnemonicParsing="false" onAction="#handleHomeMenuItem" text="Home" />
-               <MenuItem mnemonicParsing="false" onAction="#handleViewLevelMenuItem" text="View Level" />
            </items>
          </Menu>
          <Menu mnemonicParsing="false" text="About">
            <items>
-               <MenuItem mnemonicParsing="false" onAction="#handleAboutMenuItem" text="Credit" />
+               <MenuItem mnemonicParsing="false" onAction="#handleAboutMenuItem" text="Credits" />
            </items>
          </Menu>
            <Menu mnemonicParsing="false" text="Help">

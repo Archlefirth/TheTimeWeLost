@@ -27,7 +27,7 @@
             <ButtonBar buttonMinWidth="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1000.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
               <buttons>
                 <Button id="button-nav" fx:id="next" mnemonicParsing="false" onAction="#handleButtonClicked" text="Next" />
-                  <Button id="button-nav" fx:id="skip" mnemonicParsing="false" onAction="#handleButtonClicked" text="Skip" />
+                  <Button id="button-nav" fx:id="skip" mnemonicParsing="false" onAction="#handleButtonClicked" text="Play Game" />
               </buttons>
                <GridPane.margin>
                   <Insets />

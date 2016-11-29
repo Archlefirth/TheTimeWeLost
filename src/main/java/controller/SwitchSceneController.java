@@ -88,6 +88,7 @@ public class SwitchSceneController implements MainController{
                 text.setText(readLine(stage, lineNum));
             } else {
                 next.setDisable(true);
+
             }
         } else if (event.getSource() == skip) {
             game.showMainGame();
