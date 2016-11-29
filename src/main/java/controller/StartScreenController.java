@@ -19,10 +19,10 @@ public class StartScreenController implements MainController{
         // if the users doesn't enter names set to default
         // change these names to the names of the actual time traveller characters
         if (player1.getText().length() == 0){
-            player1.setText("Default Dan");
+            player1.setText("Lanni Youkissas");
         }
         if (player2.getText().length() == 0){
-            player2.setText("Default Molly");
+            player2.setText("Freya");
         }
         MainGameController.setPlayers(player1.getText(), player2.getText());
         SwitchSceneController.setPlayers(player1.getText(), player2.getText());

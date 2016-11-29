@@ -266,7 +266,6 @@ public class MainGameController implements MainController{
             if (level < 5) {
                 count++; //simply alternate key until level 5
             } else {
-                //TODO: Optimize randomizer to fix bug (below)
                 count = count + random.nextInt(2);  //randomize keys after level 3... to make it harder
                 // note : this will sometimes cause a bug (all pattern char generated for one user)
             }

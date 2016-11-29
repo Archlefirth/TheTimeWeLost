@@ -38,7 +38,7 @@ public class Dialogue {
         lineArr[0].add("Freya: Fine. We can just start guessing until we make it back home.");
         lineArr[0].add("Lanni: Wait, but don’t you want to say bye to your family before we go?");
         lineArr[0].add("Freya: Har-dee-har-har. Let's go.");
-        lineArr[0].add("After visiting countless points in history, Lanni Youkissas and Freya Lindholm " +
+        lineArr[0].add("After visiting countless points in history, Lanni Youkissas and Freya " +
                 "find themselves \ntrapped in the wrong century without their book of time period codes." +
                 " Complete the patterns \nto help them get back home!");
 
