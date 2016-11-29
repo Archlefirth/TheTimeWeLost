@@ -13,7 +13,7 @@
 #text-header{
     -fx-font-size: 50 px;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-fill: #4DD0E1;
+    -fx-fill: #F19953;
 }
 
 #text-main{
@@ -44,7 +44,7 @@
     -fx-padding: 5 22 5 22;
     -fx-border-width: 0.5;
     -fx-background-radius: 0;
-    -fx-background-color: #84C253;
+    -fx-background-color: #0B3954;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 20pt;
     -fx-text-fill: #FFFFFF;
@@ -52,7 +52,7 @@
 }
 
 #button-go:hover {
-    -fx-background-color: #2E7D32;
+    -fx-background-color: #F19953;
 }
 
 #button-sub {
@@ -60,15 +60,16 @@
     -fx-border-width: 1.5;
     -fx-background-radius: 0;
     -fx-background-color: #FFFFFF;
-    -fx-border-color: #84C253;
+    -fx-border-color: #F19953;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 20pt;
-    -fx-text-fill: #84C253;
+    -fx-text-fill: #F19953;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 #button-sub:hover {
-    -fx-background-color: #F1F8E9;
+    -fx-background-color: #F19953;
+    -fx-text-fill: #FFFFFF;
 }
 
 #button-nav {
@@ -83,7 +84,7 @@
 }
 
 #button-nav:hover {
-    -fx-background-color: #F1F8E9;
+    -fx-background-color: #0B3954;
 }
 
 #text-stage {

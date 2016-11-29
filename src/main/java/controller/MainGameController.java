@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.Random;
 
+
 public class MainGameController implements MainController{
     private Game game;
     private boolean isPatternVisible = true;
