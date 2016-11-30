@@ -30,7 +30,7 @@ import java.util.Random;
 public class MainGameController implements MainController{
     private Game game;
     private boolean isPatternVisible = true;
-    private static int level = 28;
+    private static int level = 1;
     private static int life = 3;
     private static int stage;
     private static int patternLength; //initial pattern length; will increase by level

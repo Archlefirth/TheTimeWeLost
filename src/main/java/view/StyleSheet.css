@@ -90,7 +90,9 @@
 #text-stage {
     -fx-font-size: 20 px;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-fill: #ffffff;}
+    -fx-fill: #ffffff;
+}
+
 
 #text-field-red {
     -fx-background-color: white , white, #FFAB91;
