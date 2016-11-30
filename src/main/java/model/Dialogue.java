@@ -35,13 +35,13 @@ public class Dialogue {
         lineArr[0].add("50000 BC: You have reached the Age of Cavemen!");
         lineArr[0].add(player1 +  ": How can you just lose the time machine codes? It’s a big, neon yellow book!");
         lineArr[0].add(player2 +  ": Well maybe we should make it glow-in-the-dark if you expect me to see in a time period without electricity!");
-        lineArr[0].add(player1 +  ": Candles! Lanterns! Electricity! Where's the difficulty?");
+        lineArr[0].add(player1 +  ": Candles! Lanterns! You know, people didn't just stop living when the sun went down before the discovery of electricity.");
         lineArr[0].add(player2 +  ": Let’s just get back to 2016. We have another copy at home.");
-        lineArr[0].add(player1 +  ": Fine. We can just start guessing until we make it back home.");
+        lineArr[0].add(player1 +  ": Fine. We can just start guessing until we make it back.");
         lineArr[0].add(player2 +  ": Wait, but don’t you want to say bye to your family before we go?");
         lineArr[0].add(player1 +  ": Har-dee-har-har. Let's go.");
-        lineArr[0].add("After travelling throughout history, " + player1 + " and " + player2 +
-                " find themselves trapped in the wrong century without their book of time period codes." +
+        lineArr[0].add("After traveling through history, " + player1 + " and " + player2 +
+                " find themselves trapped in the wrong century without their book of time machine codes." +
                 " Complete the patterns to help them get back home!");
 
         //Ancient Greece/Roman
@@ -75,8 +75,14 @@ public class Dialogue {
         lineArr[3].add(player2 + ": Oh so now you want to have fun? We're leaving.");
 
         //WW1/WW2
-        lineArr[4].add("1943 AD: World War II");
-        lineArr[4].add("");
+        lineArr[4].add("1943 AD: Welcome to World War II");
+        lineArr[4].add(player1 + ": I say we take out Hitler.");
+        lineArr[4].add(player2 + ": What?");
+        lineArr[4].add(player1 + ": How many people dream of going back in time and ending it all? We're here! We could do it!");
+        lineArr[4].add(player2 + ": As much as I want that, think about how much that would affect the timeline. And besides, we don't have the capabilities to kill Hitler.");
+        lineArr[4].add(player1 + ": But what if you're wrong? What if we could stop this?");
+        lineArr[4].add(player2 + ": I wish I had your optimism, " + player2 + ". But I think we should go before we get too emotionally invested.");
+        lineArr[4].add(player1 + ": *sighs* I know you're right. I just wish you weren't...");
 
         //70's/80's
         lineArr[5].add("1980 AD: I hope you have Disco Fever!");
