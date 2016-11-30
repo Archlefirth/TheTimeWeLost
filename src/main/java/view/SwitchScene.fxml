@@ -37,14 +37,15 @@
                </padding>
             </ButtonBar>
             <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="1019.0" GridPane.rowIndex="1" />
-            <Text id="text-stage" fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <Text id="text-stage" fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="950.0" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                </GridPane.margin>
             </Text>
+            <ImageView fx:id="character" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" translateX="60.0" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <StackPane fx:id="leftDoor" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" visible="false" StackPane.alignment="CENTER_LEFT">
+      <StackPane fx:id="leftDoor" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" StackPane.alignment="CENTER_LEFT">
          <children>
             <ImageView fitHeight="800.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -53,7 +54,7 @@
             </ImageView>
          </children>
       </StackPane>
-      <StackPane fx:id="rightDoor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" visible="false" StackPane.alignment="CENTER_RIGHT">
+      <StackPane fx:id="rightDoor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" StackPane.alignment="CENTER_RIGHT">
          <children>
             <ImageView fitHeight="800.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                <image>

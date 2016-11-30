@@ -30,7 +30,7 @@ import java.util.Random;
 public class MainGameController implements MainController{
     private Game game;
     private boolean isPatternVisible = true;
-    private static int level = 1;
+    private static int level = 28;
     private static int life = 3;
     private static int stage;
     private static int patternLength; //initial pattern length; will increase by level
@@ -163,7 +163,7 @@ public class MainGameController implements MainController{
             field.setAlignment(Pos.CENTER);
             playerPatternGrid.getColumnConstraints().add(i, cc);
             playerPatternGrid.addColumn(i, field);
-            field.setMaxWidth(70);
+            field.setMaxWidth(80);
             field.setMaxHeight(100);
             final int j = i; // for focus property listener only
             field.focusedProperty().addListener(new ChangeListener<Boolean>() {
@@ -188,7 +188,6 @@ public class MainGameController implements MainController{
             inputTextField[i] = field;
         }
         disablePlayerInput(true);
-        playerPatternGrid.setPadding(new Insets(0, 20, 0, 20));
         for (int i = 0; i < inputTextField.length; i++) {
             final int j = i;
             inputTextField[i].setOnKeyReleased((KeyEvent e) -> {

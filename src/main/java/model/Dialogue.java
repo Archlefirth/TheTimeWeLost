@@ -34,24 +34,24 @@ public class Dialogue {
         // Player 2 =  Freya's lines
         lineArr[0].add("50000 BC: You have reached the Age of Cavemen!");
         lineArr[0].add(player1 +  ": How can you just lose the time machine codes? It’s a big, neon yellow book!");
-        lineArr[0].add(player2 +  ": Well maybe we should make it glow-in-the-dark if you expect me to see in a time period \nwithout electricity!");
+        lineArr[0].add(player2 +  ": Well maybe we should make it glow-in-the-dark if you expect me to see in a time period without electricity!");
         lineArr[0].add(player1 +  ": Candles! Lanterns! Electricity! Where's the difficulty?");
         lineArr[0].add(player2 +  ": Let’s just get back to 2016. We have another copy at home.");
         lineArr[0].add(player1 +  ": Fine. We can just start guessing until we make it back home.");
         lineArr[0].add(player2 +  ": Wait, but don’t you want to say bye to your family before we go?");
         lineArr[0].add(player1 +  ": Har-dee-har-har. Let's go.");
         lineArr[0].add("After travelling throughout history, " + player1 + " and " + player2 +
-                " find themselves \ntrapped in the wrong century without their book of time period codes." +
-                " Complete the patterns \nto help them get back home!");
+                " find themselves trapped in the wrong century without their book of time period codes." +
+                " Complete the patterns to help them get back home!");
 
         //Ancient Greece/Roman
         lineArr[1].add("100 AD: Welcome to Ancient Rome!");
         lineArr[1].add(player1 + ": You know, I've always wanted to visit Ancient Rome.");
         lineArr[1].add(player2 + ": Ever think you'd see it like this, in its prime?");
         lineArr[1].add(player1 + ": Yes. I pictured traveling through space and time in a " +
-                "rickety metal box to be right here \nin this very moment of history. Yeah.");
+                "rickety metal box to be right here in this very moment of history. Yeah.");
         lineArr[1].add(player2 + ": Okay, I can see you're getting cranky. Maybe you should" +
-                " take a nap and let me try the \nnext time period.");
+                " take a nap and let me try the next time period.");
         lineArr[1].add(player1 + ": Sure, I'd nap... if I wanted to end up back with the cavemen.");
         lineArr[1].add(player2 + ": No faith and so much sass. C'mon, let's go.");
 
@@ -63,7 +63,7 @@ public class Dialogue {
         lineArr[2].add(player2 + ": Or maybe we just need to prove everyone wrong by finding him!");
         lineArr[2].add(player1 + ": That's a terrible idea.");
         lineArr[2].add(player2 + ": ...you're just afraid of a little fun.");
-        lineArr[2].add(player1 + ": Fun is getting back home for the election or New Years. \nNot running around here searching for a king that doesn't exist.");
+        lineArr[2].add(player1 + ": Fun is getting back home for the election or New Years. Not running around here searching for a king that doesn't exist.");
         lineArr[2].add(player2 + ": I bet you'll regret rushing home so fast.");
 
         //Age of Exploration

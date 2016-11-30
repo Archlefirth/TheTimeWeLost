@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +25,10 @@ public class SwitchSceneController implements MainController{
     @FXML private Button next;
     @FXML private Button skip;
     @FXML private ImageView img;
+    @FXML private ImageView character;
     private Image stageImg;
+    private Image character1 = new Image("/img/character/Lanni-Head.png");
+    private Image character2 = new Image("/img/character/Freya-Head.png");
     private static String player1;
     private static String player2;
     private Dialogue dialogue;
@@ -36,10 +40,12 @@ public class SwitchSceneController implements MainController{
     @FXML
     private void initialize () throws IOException {
         next.setDisable(false);
-        animateDoor("LEFT", leftDoor);
-        animateDoor("RIGHT", rightDoor);
+        character.setVisible(false);
+        animateDoor(0, -500, leftDoor);
+        animateDoor(0, 500, rightDoor);
         dialogue = new Dialogue(player1, player2);
         lineList = dialogue.getDialogue();
+        text.setTranslateX(0);
         text.setText(readLine(stage, lineNum));
         if (stage < 6) {
             stageImg = new Image("/img/" + stage + ".gif");
@@ -59,21 +65,18 @@ public class SwitchSceneController implements MainController{
 
     /*
      * animate the doors
-     * @param direction direction to slide the doors
+     * @param from location to translate from
+     * @param to location to translate to
      * @param pane pane to animate
      */
     @FXML
-    private void animateDoor(String direction, Pane pane){
+    private Transition animateDoor(int from, int to, Pane pane){
         TranslateTransition transition
-                = new TranslateTransition(Duration.seconds(2), pane);
-        if (direction.equals("LEFT")) {
-            transition.setFromX(0);
-            transition.setToX(-500);
-        } else if (direction.equals("RIGHT")) {
-            transition.setFromX(0);
-            transition.setToX(500);
-        }
+                = new TranslateTransition(Duration.seconds(1.75), pane);
+        transition.setFromX(from);
+        transition.setToX(to);
         transition.play();
+        return transition;
     }
 
     /*
@@ -85,13 +88,37 @@ public class SwitchSceneController implements MainController{
         if (event.getSource() == next) {
             if (lineNum < lineList[stage].size() - 1) {
                 lineNum++;
-                text.setText(readLine(stage, lineNum));
+                String currentLine = readLine(stage, lineNum);
+                text.setText(currentLine);
+                text.setWrappingWidth(750);
+                if (currentLine.contains(player1 + ": ")) {
+                    character.setVisible(true);
+                    text.setTranslateX(150);
+                    character.setImage(character1);
+                } else if ( currentLine.contains(player2 + ": ")){
+                    character.setVisible(true);
+                    text.setTranslateX(150);
+                    character.setImage(character2);
+                } else {
+                    character.setVisible(false);
+                    text.setWrappingWidth(900);
+                    text.setTranslateX(0);
+                }
             } else {
                 next.setDisable(true);
 
             }
         } else if (event.getSource() == skip) {
-            game.showMainGame();
+            Transition transition = animateDoor(-500, 0, leftDoor);
+            animateDoor(500, 0, rightDoor);
+            transition.setOnFinished(e -> {
+                try {
+                    game.showMainGame();
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+            });
+
         }
     }
 
