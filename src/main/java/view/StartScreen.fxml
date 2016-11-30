@@ -28,7 +28,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text id="text-sub" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="A Cooperative Pattern-Matching Time Travelling Extravagant Adventure!" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Text id="text-sub" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="A Cooperative Pattern-Matching Time Traveling Extravagant Adventure!" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Text id="text-header" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="THE TIME WE LOST" textAlignment="CENTER" wrappingWidth="606.37353515625" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="41.0" />
