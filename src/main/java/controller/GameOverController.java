@@ -69,10 +69,15 @@ public class GameOverController implements MainController {
             secondPlayers.setText(players1);
             players2 = players1;
             level2 = level1;
-            firstLevel.setText(Integer.toString(level));
+            if (level >= 31) {
+                firstLevel.setText("Cleared");
+            } else {
+                firstLevel.setText(Integer.toString(level));
+            }
             firstPlayers.setText(players);
             players1 = players;
             level1 = level;
+
         } else if (levelArr[2] == level) {
             thirdLevel.setText(Integer.toString(level2));
             thirdPlayers.setText(players2);
