@@ -236,7 +236,7 @@ public class MainGameController implements MainController{
         } else {
             patternLength = 11;
             player1keys = new char[] {'Q', 'W', 'E', 'R', 'A', 'S', 'D', 'F', 'Z', 'X', 'C', 'V'}; //12
-            player2keys = new char[] {'U', 'I', 'O', 'P', 'H', 'J', 'K', 'L', 'V', 'B', 'N', 'M'}; //12
+            player2keys = new char[] {'U', 'I', 'O', 'P', 'H', 'J', 'K', 'L', 'G', 'B', 'N', 'M'}; //12
 
         }
         pattern = new PatternChar[patternLength];
