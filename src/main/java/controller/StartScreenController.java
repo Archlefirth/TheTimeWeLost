@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 
 public class StartScreenController implements MainController{
-    Game game;
+    private Game game;
     @FXML private TextField player1;
     @FXML private TextField player2;
     @FXML private GridPane instructionPane;

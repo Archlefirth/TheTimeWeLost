@@ -37,7 +37,7 @@ public class MainGameController implements MainController{
     private static String player1str;
     private static String player2str;
     private char[] player1keys = {'A', 'S', 'D', 'W'};
-    private char[] player2keys = {'K', 'K', 'L', 'I'};
+    private char[] player2keys = {'J', 'K', 'L', 'I'};
     private PatternChar[] pattern;
     private String patternToStr;
     private Random random = new Random();

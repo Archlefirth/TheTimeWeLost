@@ -59,10 +59,10 @@
     -fx-padding: 5 22 5 22;
     -fx-border-width: 1.5;
     -fx-background-radius: 0;
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #DE8C1B;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 20pt;
-    -fx-text-fill: #DE8C1B;
+    -fx-text-fill: #FFFFFF;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 

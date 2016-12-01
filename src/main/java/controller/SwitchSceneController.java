@@ -19,7 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class SwitchSceneController implements MainController{
-    Game game;
+    private Game game;
     @FXML private StackPane leftDoor;
     @FXML private StackPane rightDoor;
     @FXML private Text text;
@@ -37,7 +37,7 @@ public class SwitchSceneController implements MainController{
     private AudioClip backgroundMusic;
 
     @FXML
-    private void initialize () throws IOException {
+    private void initialize () {
         next.setDisable(false);
         character.setVisible(false);
         animateDoor(0, -500, leftDoor);

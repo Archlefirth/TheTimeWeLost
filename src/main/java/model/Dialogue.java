@@ -22,7 +22,7 @@ public class Dialogue {
         String player1 = p1;
         String player2 = p2;
         for (int i = 0; i < lineArr.length; i++) {
-            lineArr[i] = new ArrayList<String>();
+            lineArr[i] = new ArrayList<>();
         }
 
         //intro narrative + Cavemen
