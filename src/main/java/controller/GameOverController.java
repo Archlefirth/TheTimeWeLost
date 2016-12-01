@@ -1,6 +1,8 @@
 package controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import main.Game;
 
@@ -16,11 +18,12 @@ public class GameOverController implements MainController {
     @FXML private Text firstLevel;
     @FXML private Text secondLevel;
     @FXML private Text thirdLevel;
-    @FXML private Text header;
-    private static String header_text = "Game Over";
+    @FXML private ImageView background;
+    private static Image img = new Image("/img/gameover.png");
     private static int level1, level2, level3;
     private static int level;
-    private static String players1, players2, players3;
+    private static String players1;
+    private static String players2;
     private static String players;
 
     /*
@@ -28,7 +31,7 @@ public class GameOverController implements MainController {
      */
     @FXML
     private void initialize(){
-        header.setText(header_text);
+        background.setImage(img);
         setChart();
     }
 
@@ -45,8 +48,13 @@ public class GameOverController implements MainController {
     }
 
     @FXML
-    public static void setHeader(String h) {
-        header_text = h;
+    public static void setBackground(String result) {
+        if (result.equals("gameover")) {
+            img = new Image ("/img/gameover.png");
+        } else {
+            img = new Image("/img/won.png");
+        }
+
     }
     /*
      * updates the chart
@@ -55,15 +63,15 @@ public class GameOverController implements MainController {
     private void setChart() {
         int[] levelArr = {level, level1, level2, level3};
         String a = "";
-        for (int i = 0; i < levelArr.length; i++) {
-            a = a + ", " + levelArr[i];
+        for (int aLevelArr : levelArr) {
+            a = a + ", " + aLevelArr;
         }
         sort(levelArr);
 
+        String players3;
         if (levelArr[3] == level) {
             thirdLevel.setText(Integer.toString(level2));
             thirdPlayers.setText(players2);
-            players3 = players2;
             level3 = level2;
             secondLevel.setText(Integer.toString(level1));
             secondPlayers.setText(players1);
@@ -81,7 +89,6 @@ public class GameOverController implements MainController {
         } else if (levelArr[2] == level) {
             thirdLevel.setText(Integer.toString(level2));
             thirdPlayers.setText(players2);
-            players3 = players2;
             level3 = level2;
             secondLevel.setText(Integer.toString(level));
             secondPlayers.setText(players);
@@ -90,7 +97,6 @@ public class GameOverController implements MainController {
         } else if (levelArr[1] == level) {
             thirdLevel.setText(Integer.toString(level));
             thirdPlayers.setText(players);
-            players3 = players;
             level3 = level;
 
         }

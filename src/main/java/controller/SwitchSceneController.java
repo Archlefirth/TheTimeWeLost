@@ -9,12 +9,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import main.Game;
 import model.Dialogue;
-
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class SwitchSceneController implements MainController{
@@ -26,16 +27,14 @@ public class SwitchSceneController implements MainController{
     @FXML private Button skip;
     @FXML private ImageView img;
     @FXML private ImageView character;
-    private Image stageImg;
     private Image character1 = new Image("/img/character/Lanni-Head.png");
     private Image character2 = new Image("/img/character/Freya-Head.png");
     private static String player1;
     private static String player2;
-    private Dialogue dialogue;
-    ArrayList<String>[] lineList;
-    String currentLine;
+    private ArrayList<String>[] lineList;
     private static int stage;
     private int lineNum;
+    private AudioClip backgroundMusic;
 
     @FXML
     private void initialize () throws IOException {
@@ -43,14 +42,15 @@ public class SwitchSceneController implements MainController{
         character.setVisible(false);
         animateDoor(0, -500, leftDoor);
         animateDoor(0, 500, rightDoor);
-        dialogue = new Dialogue(player1, player2);
+        Dialogue dialogue = new Dialogue(player1, player2);
         lineList = dialogue.getDialogue();
-        text.setTranslateX(0);
-        text.setText(readLine(stage, lineNum));
         if (stage < 6) {
-            stageImg = new Image("/img/" + stage + ".gif");
+            Image stageImg = new Image("/img/" + stage + ".gif");
             img.setImage(stageImg);
         }
+        text.setTranslateX(0);
+        text.setText(readLine(stage, lineNum));
+        playBackgroundMusic(stage);
     }
 
     /*
@@ -76,6 +76,7 @@ public class SwitchSceneController implements MainController{
         transition.setFromX(from);
         transition.setToX(to);
         transition.play();
+        playSoundFX("Door.wav");
         return transition;
     }
 
@@ -93,33 +94,33 @@ public class SwitchSceneController implements MainController{
                 text.setWrappingWidth(750);
                 if (currentLine.contains(player1 + ": ")) {
                     character.setVisible(true);
-                    text.setTranslateX(150);
+                    text.setTranslateX(170);
                     character.setImage(character1);
                 } else if ( currentLine.contains(player2 + ": ")){
                     character.setVisible(true);
-                    text.setTranslateX(150);
+                    text.setTranslateX(170);
                     character.setImage(character2);
                 } else {
                     character.setVisible(false);
-                    text.setWrappingWidth(900);
+                    text.setWrappingWidth(930);
                     text.setTranslateX(0);
                 }
             } else {
                 next.setDisable(true);
-
             }
         } else if (event.getSource() == skip) {
             Transition transition = animateDoor(-500, 0, leftDoor);
             animateDoor(500, 0, rightDoor);
             transition.setOnFinished(e -> {
                 try {
+                    backgroundMusic.stop();
                     game.showMainGame();
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 }
             });
-
         }
+        playSoundFX("Button.mp3");
     }
 
     /*
@@ -128,8 +129,28 @@ public class SwitchSceneController implements MainController{
      * @param lineNum current line to display
      */
     private String readLine(int stage, int lineNum){
-        currentLine= lineList[stage].get(lineNum);
-        return currentLine;
+        return lineList[stage].get(lineNum);
+    }
+
+    /*
+    * plays the sound effect for buttons
+    * @param filename name of audio to play
+    */
+    private void playSoundFX(String filename) {
+        URL resource = getClass().getResource("/sound/FX/" + filename);
+        AudioClip soundFX = new AudioClip(resource.toString());
+        soundFX.play();
+    }
+
+    /*
+    * plays theme song for each stage
+    * @param stage theme song for the stage
+    */
+    private void playBackgroundMusic(int stage) {
+        URL resource = getClass().getResource("/sound/background/" + stage + ".wav");
+        backgroundMusic = new AudioClip(resource.toString());
+        backgroundMusic.setCycleCount(1000);
+        backgroundMusic.play();
     }
 
     /*
