@@ -1,69 +1,45 @@
 package main;
 import controller.MainController;
-import controller.MenuBarController;
 import javafx.fxml.FXMLLoader;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class Game extends Application{
-    private BorderPane rootLayout;
     private Stage mainScreen;
-    private static MenuBarController menuBarController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         mainScreen = primaryStage;
-        initRootLayout(mainScreen);
         showStartScreen();
     }
 
     /**
-     * initializes the menu bar border pane which will show other pages as well.
+     * displays the screen
      *
      * @param mainScreen screen to be displayed.
+     * @param FXMLFilePath fxml file to display
+     * @param filename name of fxml to find
      * @throws IOException throws an exception if fxml is not found.
      */
-    private void initRootLayout(Stage mainScreen) throws IOException {
+    private void showScreen(Stage mainScreen, String FXMLFilePath, String filename) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Game.class.
-                    getClassLoader().getResource("view/MenuBar.fxml"));
-            rootLayout = loader.load();
-            menuBarController = loader.getController();
-            menuBarController.setMainApp(this);
-            mainScreen.setTitle("LMC2700 Project 5");
+                    getClassLoader().getResource(FXMLFilePath));
+            Pane rootLayout = loader.load();
+            MainController controller = loader.getController();
+            controller.setMainApp(this);
+            mainScreen.setTitle("The Time We Lost");
             Scene scene = new Scene(rootLayout);
             mainScreen.setScene(scene);
             mainScreen.show();
             mainScreen.setResizable(false);
             mainScreen.sizeToScene();
         } catch (IOException e) {
-            throw new IOException("Cannot find the MenuBar.fxml.");
-        }
-    }
-
-    /**
-     * changes the screen based on the given fxml file path.
-     * @param fxmlFilePath path for the fxml file
-     * @param fxmlName   name of the fxml file
-     */
-    private void showScreen(String fxmlFilePath,
-                            String fxmlName) throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Game.class.
-                    getClassLoader().getResource(fxmlFilePath));
-            Pane showPage = loader.load();
-            rootLayout.setCenter(showPage);
-            MainController controller = loader.getController();
-            controller.setMainApp(this);
-        } catch (IOException e) {
-            throw new IOException("Cannot find the " + fxmlName + ".fxml.");
+            throw new IOException("Cannot find the " + filename + ".fxml.");
         }
     }
 
@@ -73,7 +49,7 @@ public class Game extends Application{
      * @throws IOException throws an exception if MainGame.fxml is not found.
      */
     public void showMainGame() throws IOException {
-        showScreen("view/MainGame.fxml", "MainGame");
+        showScreen(mainScreen,"view/MainGame.fxml", "MainGame");
     }
 
     /**
@@ -82,7 +58,7 @@ public class Game extends Application{
      * @throws IOException throws an exception if StartScreen.fxml is not found.
      */
     public void showStartScreen() throws IOException {
-        showScreen("view/StartScreen.fxml", "StartScreen");
+        showScreen(mainScreen,"view/StartScreen.fxml", "StartScreen");
     }
 
     /**
@@ -91,7 +67,7 @@ public class Game extends Application{
      * @throws IOException throws an exception if GameOver.fxml is not found.
      */
     public void showGameOverScreen() throws IOException {
-        showScreen("view/GameOver.fxml", "GameOver");
+        showScreen(mainScreen,"view/GameOver.fxml", "StartScreen");
     }
 
     /**
@@ -100,7 +76,7 @@ public class Game extends Application{
      * @throws IOException throws an exception if SwitchScene.fxml is not found.
      */
     public void switchScene() throws IOException {
-        showScreen("view/SwitchScene.fxml", "SwitchScene");
+        showScreen(mainScreen,"view/SwitchScene.fxml", "SwitchScene");
     }
 
     /**

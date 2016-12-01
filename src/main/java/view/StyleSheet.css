@@ -60,10 +60,9 @@
     -fx-border-width: 1.5;
     -fx-background-radius: 0;
     -fx-background-color: #FFFFFF;
-    -fx-border-color: #F19953;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 20pt;
-    -fx-text-fill: #F19953;
+    -fx-text-fill: #DE8C1B;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
@@ -84,7 +83,7 @@
 }
 
 #button-nav:hover {
-    -fx-background-color: #0B3954;
+    -fx-background-color: #DE8C1B;
 }
 
 #text-stage {

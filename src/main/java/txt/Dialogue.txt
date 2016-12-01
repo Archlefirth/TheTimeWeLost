@@ -1,2 +1,0 @@
-We could use File I/O to display dialogues for scene changes,
-or simply hard code this in controllers as an ArrayList<String>[levelIndex] - which might get a bit messy.

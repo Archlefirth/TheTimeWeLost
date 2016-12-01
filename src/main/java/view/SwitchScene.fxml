@@ -12,56 +12,59 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<StackPane id="game-pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SwitchSceneController">
-   <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0">
+<StackPane id="game-pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           prefHeight="800.0" prefWidth="1000.0" stylesheets="@StyleSheet.css" xmlns="http://javafx.com/javafx/8.0.60"
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SwitchSceneController">
+    <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+              prefHeight="800.0" prefWidth="1000.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="1000.0" percentWidth="0.0" prefWidth="1000.0" />
+            <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="1000.0" percentWidth="0.0"
+                               prefWidth="1000.0"/>
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="600.0" minHeight="10.0" percentHeight="0.0" prefHeight="600.0" vgrow="NEVER" />
-          <RowConstraints maxHeight="200.0" minHeight="200.0" percentHeight="0.0" prefHeight="200.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="600.0" minHeight="10.0" percentHeight="0.0" prefHeight="600.0" vgrow="NEVER"/>
+            <RowConstraints maxHeight="200.0" minHeight="200.0" percentHeight="0.0" prefHeight="200.0"
+                            vgrow="SOMETIMES"/>
         </rowConstraints>
-         <children>
-            <ImageView fx:id="img" fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" GridPane.valignment="BASELINE" />
-            <ButtonBar buttonMinWidth="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="1000.0" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
-              <buttons>
-                <Button id="button-nav" fx:id="next" mnemonicParsing="false" onAction="#handleButtonClicked" text="Next" />
-                  <Button id="button-nav" fx:id="skip" mnemonicParsing="false" onAction="#handleButtonClicked" text="Play Game" />
-              </buttons>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <padding>
-                  <Insets right="10.0" />
-               </padding>
-            </ButtonBar>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="1019.0" GridPane.rowIndex="1" />
-            <Text id="text-stage" fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="950.0" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </GridPane.margin>
-            </Text>
-            <ImageView fx:id="character" fitHeight="115.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" translateX="60.0" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
-      <StackPane fx:id="leftDoor" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" StackPane.alignment="CENTER_LEFT">
-         <children>
-            <ImageView fitHeight="800.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/leftDoor.png" />
-               </image>
-            </ImageView>
-         </children>
-      </StackPane>
-      <StackPane fx:id="rightDoor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" StackPane.alignment="CENTER_RIGHT">
-         <children>
-            <ImageView fitHeight="800.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/rightDoor.png" />
-               </image>
-            </ImageView>
-         </children>
-      </StackPane>
-   </children>
+        <ImageView fx:id="img" fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true"
+                   GridPane.valignment="BASELINE"/>
+        <ButtonBar buttonMinWidth="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                   minWidth="-Infinity" prefHeight="60.0" prefWidth="1000.0" GridPane.halignment="RIGHT"
+                   GridPane.valignment="BOTTOM">
+            <buttons>
+                <Button id="button-nav" fx:id="next" mnemonicParsing="false" onAction="#handleButtonClicked"
+                        text="Next"/>
+                <Button id="button-nav" fx:id="skip" mnemonicParsing="false" onAction="#handleButtonClicked"
+                        text="Play Game"/>
+            </buttons>
+            <GridPane.margin>
+                <Insets/>
+            </GridPane.margin>
+            <padding>
+                <Insets right="10.0"/>
+            </padding>
+        </ButtonBar>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" stroke="TRANSPARENT" strokeType="INSIDE"
+                   strokeWidth="0.0" width="1019.0" GridPane.rowIndex="1"/>
+        <Text id="text-stage" fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="950.0"
+              GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <GridPane.margin>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0"/>
+            </GridPane.margin>
+        </Text>
+        <ImageView fx:id="character" fitHeight="115.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true"
+                   translateX="60.0" GridPane.rowIndex="1"/>
+    </GridPane>
+    <StackPane fx:id="leftDoor" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+               prefWidth="500.0" StackPane.alignment="CENTER_LEFT">
+        <ImageView fitHeight="800.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../img/leftDoor.png"/>
+        </ImageView>
+    </StackPane>
+    <StackPane fx:id="rightDoor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+               minWidth="-Infinity" prefHeight="800.0" prefWidth="500.0" StackPane.alignment="CENTER_RIGHT">
+        <ImageView fitHeight="800.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../img/rightDoor.png"/>
+        </ImageView>
+    </StackPane>
 </StackPane>

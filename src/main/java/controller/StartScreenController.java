@@ -1,19 +1,30 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
+import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
 import main.Game;
-
 import java.io.IOException;
-import java.util.Optional;
+import java.net.URL;
 
 public class StartScreenController implements MainController{
     Game game;
     @FXML private TextField player1;
     @FXML private TextField player2;
+    @FXML private GridPane instructionPane;
+    private AudioClip backgroundMusic;
+
+
+    @FXML
+    private void initialize() {
+        instructionPane.setVisible(false);
+        URL resource = getClass().getResource("/sound/background/Main.wav");
+        backgroundMusic = new AudioClip(resource.toString());
+        backgroundMusic.setCycleCount(1000);
+        backgroundMusic.play();
+    }
+
     @FXML
     private void handleStartButton() throws IOException {
         // if the users doesn't enter names set to default
@@ -22,31 +33,37 @@ public class StartScreenController implements MainController{
             player1.setText("Lanni Youkissas");
         }
         if (player2.getText().length() == 0){
-            player2.setText("Freya");
+            player2.setText("Freya Lindholm");
         }
         MainGameController.setPlayers(player1.getText(), player2.getText());
         SwitchSceneController.setPlayers(player1.getText(), player2.getText());
+        MainGameController.setLevel(1, 3);
+        backgroundMusic.stop();
+        playSoundFX("Button.mp3");
         game.switchScene();
     }
 
-    //TODO make a instruction page
+
     @FXML
-    private void handleInstructionButton() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("HOW TO PLAY");
-        alert.setHeaderText(
-                "Work together to enter the correct pattern\n" +
-                "Press the corresponding keys on the keyboard to input a pattern\n" +
-                "Enter the right pattern before the time runs out and advance a level\n" +
-                "Complete levels and advance through the ages to get home\n\n" +
+    private void handleBackToMain() {
+        playSoundFX("Button.mp3");
+        instructionPane.setVisible(false);
+    }
 
-                "Enter a pattern incorrectly and lose a life\n" +
-                "Lose all lives and the game is over\n" +
-                "Advance an age and get bonus time and another life\n\n" +
+    @FXML
+    private void handleHowToPlay() {
+        playSoundFX("Button.mp3");
+        instructionPane.setVisible(true);
+    }
 
-                "How far can you go?"
-        );
-        Optional<ButtonType> result = alert.showAndWait();
+    /*
+    * plays the sound effect for buttons etc
+    * @param filename path to the sound file /sound/ ...
+    */
+    private void playSoundFX(String filename) {
+        URL resource = getClass().getResource("/sound/FX/" + filename);
+        AudioClip soundFX = new AudioClip(resource.toString());
+        soundFX.play();
     }
 
     @Override

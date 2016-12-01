@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 public class Dialogue {
     private static ArrayList<String>[] lineArr = new ArrayList[7];
-    //set array of lines to 7 levels for now
-    //We can use FileIO since this could get messy.
-    private String player1;
-    private String player2;
 
     /*
      * constructor for Dialogue class
@@ -23,8 +19,8 @@ public class Dialogue {
      * 7: 2016
      */
     public Dialogue(String p1, String p2) {
-        player1 = p1;
-        player2 = p2;
+        String player1 = p1;
+        String player2 = p2;
         for (int i = 0; i < lineArr.length; i++) {
             lineArr[i] = new ArrayList<String>();
         }
@@ -33,12 +29,12 @@ public class Dialogue {
         // Player 1 = Lanni Youkissas' lines
         // Player 2 =  Freya's lines
         lineArr[0].add("50000 BC: You have reached the Age of Cavemen!");
-        lineArr[0].add(player1 +  ": How can you just lose the time machine codes? It’s a big, neon yellow book!");
+        lineArr[0].add(player1 +  ": How can you just lose the time machine codes? It's a big, neon yellow book!");
         lineArr[0].add(player2 +  ": Well maybe we should make it glow-in-the-dark if you expect me to see in a time period without electricity!");
         lineArr[0].add(player1 +  ": Candles! Lanterns! You know, people didn't just stop living when the sun went down before the discovery of electricity.");
-        lineArr[0].add(player2 +  ": Let’s just get back to 2016. We have another copy at home.");
+        lineArr[0].add(player2 +  ": Let's just get back to 2016. We have another copy at home.");
         lineArr[0].add(player1 +  ": Fine. We can just start guessing until we make it back.");
-        lineArr[0].add(player2 +  ": Wait, but don’t you want to say bye to your family before we go?");
+        lineArr[0].add(player2 +  ": Wait, but don't you want to say bye to your family before we go?");
         lineArr[0].add(player1 +  ": Har-dee-har-har. Let's go.");
         lineArr[0].add("After traveling through history, " + player1 + " and " + player2 +
                 " find themselves trapped in the wrong century without their book of time machine codes." +
@@ -71,7 +67,7 @@ public class Dialogue {
         lineArr[3].add(player2 + ": Are we on a ship?");
         lineArr[3].add(player1 + ": I think we are. Is this the age of sailing ships, famous explorers and gold doubloons?");
         lineArr[3].add(player2 + ": Must be, because I'm already sea sick. Can we get out of here?");
-        lineArr[3].add(player1 + " But I kind of want to see where they end up.");
+        lineArr[3].add(player1 + ": But I kind of want to see where they end up.");
         lineArr[3].add(player2 + ": Oh so now you want to have fun? We're leaving.");
 
         //WW1/WW2
