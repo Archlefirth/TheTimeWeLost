@@ -93,11 +93,11 @@ public class Dialogue {
         lineArr[6].add("2016 AD: Hopefully you remembered your WiFi password");
         lineArr[6].add(player1 + ": Wha-what happened??");
         lineArr[6].add(player2 + ": How long have we been gone? What is this?");
-        lineArr[5].add(player1 + ": Dab? What is a dab?");
-        lineArr[5].add(player2 + ": Do you hear that?");
-        lineArr[5].add(player1 + ": It sounds like... a really long 'ya boi?'");
-        lineArr[5].add(player2 + ": ...wanna pick another year?");
-        lineArr[5].add(player1 + ": I'm already at the time machine.");
+        lineArr[6].add(player1 + ": Dab? What is a dab?");
+        lineArr[6].add(player2 + ": Do you hear that?");
+        lineArr[6].add(player1 + ": It sounds like... a really long 'ya boi?'");
+        lineArr[6].add(player2 + ": ...wanna pick another year?");
+        lineArr[6].add(player1 + ": I'm already at the time machine.");
     }
 
     public ArrayList<String>[] getDialogue(){

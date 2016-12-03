@@ -44,9 +44,10 @@ public class SwitchSceneController implements MainController{
         animateDoor(0, 500, rightDoor);
         Dialogue dialogue = new Dialogue(player1, player2);
         lineList = dialogue.getDialogue();
-        if (stage < 6) {
-            Image stageImg = new Image("/img/" + stage + ".gif");
-            img.setImage(stageImg);
+        Image stageImg = new Image("/img/" + stage + ".gif");
+        img.setImage(stageImg);
+        if (stage >= 6) {
+            skip.setText("End");
         }
         text.setTranslateX(0);
         text.setText(readLine(stage, lineNum));
@@ -114,7 +115,13 @@ public class SwitchSceneController implements MainController{
             transition.setOnFinished(e -> {
                 try {
                     backgroundMusic.stop();
-                    game.showMainGame();
+                    if (stage < 6) {
+                        game.showMainGame();
+                    } else {
+                        GameOverController.setBackground("won");
+                        GameOverController.setLevel((player1 + " & " + player2), 31);
+                        game.showGameOverScreen();}
+
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 }

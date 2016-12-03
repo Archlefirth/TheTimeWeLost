@@ -29,8 +29,8 @@ import java.util.Random;
 
 public class MainGameController implements MainController{
     private Game game;
-    private static int level = 1;
-    private static int life = 3;
+    private static int level;
+    private static int life;
     private static int stage;
     private static int givenTime; // the starting time for each level given in seconds
     private Integer timeSeconds; // to update the text label
@@ -327,11 +327,10 @@ public class MainGameController implements MainController{
                     }
             }
             timeText.setText("" + givenTime);
-        } else if (level >= 30){ //user wins
-            //TODO ending of the game
-            GameOverController.setBackground("won");
-            GameOverController.setLevel((player1str + " & " + player2str), level);
-            game.showGameOverScreen();
+        } else if (level >= 30 || stage > 5){ //user wins
+            stage++;
+            SwitchSceneController.setStage(stage);
+            game.switchScene();
             backgroundMusic.stop();
         }
     }else {
